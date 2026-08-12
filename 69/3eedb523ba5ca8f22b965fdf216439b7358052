@@ -1,0 +1,32 @@
+wrangler.jsonc
+  s_06f61630e6e036::t_fcf05d7d82a960 1-14
+package.json
+  s_06f61630e6e036::t_7589b7a59196bc 10-12
+  s_06f61630e6e036::t_fcf05d7d82a960 6-9
+.github/workflows/deploy.yml
+  s_06f61630e6e036::t_fcf05d7d82a960 1-32
+server.mjs
+  s_06f61630e6e036::t_fcf05d7d82a960 5
+src/worker.js
+  s_06f61630e6e036::t_fcf05d7d82a960 1-37
+worker-configuration.d.ts
+  s_06f61630e6e036::t_2225e73b0431ee 1-14707
+README.md
+  s_06f61630e6e036::t_fcf05d7d82a960 13-14,23-25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "693eedb523ba5ca8f22b965fdf216439b7358052",
+  "prompts": {},
+  "sessions": {
+    "s_06f61630e6e036": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ff48e-51c1-7842-bee4-58e136cdb6d6",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Prakash Joshi Pax <101010368+Beingpax@users.noreply.github.com>"
+    }
+  }
+}
