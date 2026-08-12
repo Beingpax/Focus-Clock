@@ -50,7 +50,15 @@ button:focus-visible, [tabindex]:focus-visible {
 .still-scene {
   z-index: -2;
   overflow: hidden;
-  background: #183b40 url('/assets/backgrounds/daniel-leone-mountains-v1.jpg') center / cover no-repeat;
+  background: #183b40;
+}
+.still-scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('/assets/backgrounds/daniel-leone-mountains-v1.jpg') center / cover no-repeat;
+  transform: scale(1.2);
+  transform-origin: center top;
 }
 .scrim { background: linear-gradient(180deg, rgba(28, 21, 19, .12), rgba(15,13,12,.08) 45%, rgba(13, 19, 18, .56)); }
 .grain {
@@ -124,7 +132,7 @@ button:focus-visible, [tabindex]:focus-visible {
   position: fixed;
   z-index: 7;
   left: 50%;
-  top: 50%;
+  top: 46%;
   width: min(72rem, calc(100vw - 2 * var(--edge)));
   transform: translate(-50%, -50%);
 }
@@ -434,7 +442,7 @@ button:focus-visible, [tabindex]:focus-visible {
 }
 
 @media (max-width: 760px) {
-  .time-tool { top: 50%; width: calc(100vw - 1rem); }
+  .time-tool { top: 46%; width: calc(100vw - 1rem); }
   .mode-wheel-shell { right: 0; width: 4rem; padding: .1rem; }
   .timer-wheel-shell { left: 0; width: 4rem; padding: .1rem; }
   .mode-wheel { height: 5.9rem; }
@@ -463,7 +471,7 @@ button:focus-visible, [tabindex]:focus-visible {
 }
 
 @media (max-width: 600px) {
-  .time-tool { top: 50%; width: calc(100vw - .5rem); }
+  .time-tool { top: 46%; width: calc(100vw - .5rem); }
   .time-readout { width: calc(100% - 5.5rem); }
   .mode-wheel-shell { position: absolute; top: 50%; right: -.15rem; width: 3.15rem; transform: translateY(-50%); }
   .timer-wheel-shell { position: absolute; top: 50%; left: -.15rem; width: 3.15rem; transform: translateY(-50%); }
