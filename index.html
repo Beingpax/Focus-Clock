@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#c96f55">
+  <meta name="description" content="A quiet sunset clock with your favorite music.">
+  <title>Golden Hour Radio</title>
+  <link rel="preconnect" href="https://www.youtube.com">
+  <link rel="preconnect" href="https://i.ytimg.com">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!--
+  THESIS: A tactile split-flap timepiece makes time itself the visual centerpiece of the radio.
+  OWN-WORLD: Burnished sunset, dark machined clock casing, ivory split cards, and restrained glass controls.
+  STORY: Choose Clock, Stopwatch, or Timer; use the time tool; then control the music below.
+  FIRST VIEWPORT: A large 3D flip display with compact mode and action controls over a still sunset.
+  FORM: CSS 3D split-flap timepiece with three functional modes.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+  -->
+  <main class="journey" id="journey">
+    <aside class="local-notice" id="local-notice" hidden role="alert">
+      <strong>Start the local radio</strong>
+      <span>Run <code>npm start</code>, then open <b>http://localhost:4173</b>.</span>
+    </aside>
+
+    <div class="still-scene" aria-hidden="true"><div class="scrim"></div><div class="grain"></div></div>
+
+    <div id="yt-player" class="yt-host" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <time id="clock" aria-label="Today's date">---</time>
+      <button class="settings-trigger" id="settings-trigger" type="button" aria-label="Open shortcut settings" aria-expanded="false" aria-controls="shortcut-settings">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.86 2.86-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6 1.7 1.7 0 0 0-.4 1.1V21H9.55v-.1A1.7 1.7 0 0 0 8.5 19.4a1.7 1.7 0 0 0-1.88.34l-.06.06-2.86-2.86.06-.06A1.7 1.7 0 0 0 4.1 15a1.7 1.7 0 0 0-.6-1 1.7 1.7 0 0 0-1.1-.4H2.3V9.55h.1A1.7 1.7 0 0 0 4.1 8.5a1.7 1.7 0 0 0-.34-1.88l-.06-.06L6.56 3.7l.06.06A1.7 1.7 0 0 0 8.5 4.1a1.7 1.7 0 0 0 1-.6 1.7 1.7 0 0 0 .4-1.1v-.1h4.05v.1A1.7 1.7 0 0 0 15 4.1a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.86 2.86-.06.06A1.7 1.7 0 0 0 19.4 8.5a1.7 1.7 0 0 0 .6 1 1.7 1.7 0 0 0 1.1.4h.1v4.05h-.1a1.7 1.7 0 0 0-1.7 1.05Z"/></svg>
+        <span>Settings</span>
+      </button>
+    </header>
+
+    <aside class="shortcut-settings" id="shortcut-settings" hidden aria-labelledby="settings-title">
+      <header><div><strong id="settings-title">Shortcuts</strong><span>Press a key to replace a shortcut.</span></div><button type="button" id="settings-close" aria-label="Close settings"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
+      <div class="shortcut-row"><span><b>Music</b><small>Play or pause</small></span><button class="shortcut-key" type="button" data-shortcut="music" aria-label="Change music shortcut"><kbd id="music-shortcut">M</kbd></button></div>
+      <div class="shortcut-row"><span><b>Time tool</b><small>Start or pause timer/stopwatch</small></span><button class="shortcut-key" type="button" data-shortcut="time" aria-label="Change time tool shortcut"><kbd id="time-shortcut">T</kbd></button></div>
+      <p class="shortcut-message" id="shortcut-message" aria-live="polite"></p>
+      <button class="shortcut-reset" id="shortcut-reset" type="button">Restore defaults</button>
+    </aside>
+
+    <section class="time-tool" aria-label="Time tools">
+      <div class="time-console">
+        <aside class="mode-wheel-shell">
+          <div class="mode-wheel" id="mode-wheel" role="listbox" aria-label="Time mode" aria-activedescendant="mode-clock" tabindex="0">
+            <div class="wheel-selection" aria-hidden="true"></div>
+            <div class="wheel-track" id="wheel-track">
+              <button type="button" id="mode-clock" role="option" data-mode="clock" class="is-active" aria-selected="true" tabindex="-1">Clock</button>
+              <button type="button" id="mode-stopwatch" role="option" data-mode="stopwatch" aria-selected="false" tabindex="-1">Stopwatch</button>
+              <button type="button" id="mode-timer" role="option" data-mode="timer" aria-selected="false" tabindex="-1">Timer</button>
+            </div>
+          </div>
+        </aside>
+        <aside class="timer-wheel-shell" id="timer-wheel-shell" hidden>
+          <div class="timer-wheel" id="timer-wheel" role="listbox" aria-label="Timer duration" aria-activedescendant="duration-300" tabindex="0">
+            <div class="wheel-selection" aria-hidden="true"></div>
+            <div class="timer-wheel-track" id="timer-wheel-track">
+              <button type="button" id="duration-60" role="option" data-seconds="60" aria-selected="false" tabindex="-1">1 min</button>
+              <button type="button" id="duration-300" role="option" data-seconds="300" class="is-active" aria-selected="true" tabindex="-1">5 min</button>
+              <button type="button" id="duration-600" role="option" data-seconds="600" aria-selected="false" tabindex="-1">10 min</button>
+              <button type="button" id="duration-1500" role="option" data-seconds="1500" aria-selected="false" tabindex="-1">25 min</button>
+            </div>
+          </div>
+        </aside>
+        <div class="time-readout">
+          <div class="flip-chamber">
+            <div class="flip-display" id="flip-display" aria-hidden="true"></div>
+            <output class="sr-only" id="time-output" aria-live="off">00:00:00</output>
+          </div>
+          <div class="console-footer">
+            <div class="time-actions" id="time-actions" hidden>
+              <button type="button" id="time-secondary">Reset</button>
+              <button type="button" class="primary" id="time-primary">Start</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="playlist" id="playlist" aria-label="Playlist" aria-hidden="true">
+      <div class="playlist-head"><span>Up next</span><b id="track-count">Playlist</b></div>
+      <ol id="playlist-items"><li class="loading-row">Loading the route…</li></ol>
+    </aside>
+
+    <section class="dock" aria-label="Music player">
+      <div class="disc" id="disc"><img id="cover" src="assets/posters/bus-road.jpg" alt="Current track artwork"></div>
+      <div class="track-meta" aria-live="polite">
+        <strong id="track-title">Ready when you are</strong>
+        <span id="track-artist">Press play to begin the drive</span>
+      </div>
+      <div class="timeline">
+        <button class="seek" id="seek" type="button" aria-label="Seek through track"><span id="seek-fill"></span><i id="seek-knob"></i></button>
+        <div class="time"><span id="current-time">0:00</span><span id="duration">0:00</span></div>
+      </div>
+      <div class="controls">
+        <button class="control is-on" id="shuffle" type="button" aria-label="Shuffle" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M4 7h3c4 0 5 10 9 10h4M17 14l3 3-3 3M4 17h3c1.5 0 2.6-1.5 3.6-3M17 4l3 3-3 3M14 7h6"/></svg></button>
+        <button class="control" id="previous" type="button" aria-label="Previous track"><svg viewBox="0 0 24 24"><path d="M6 5v14M18 6 9 12l9 6Z"/></svg></button>
+        <button class="control play" id="play" type="button" aria-label="Play" disabled><svg class="icon-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></svg><svg class="icon-pause" viewBox="0 0 24 24"><path d="M7 5h4v14H7zM14 5h4v14h-4z"/></svg></button>
+        <button class="control" id="next" type="button" aria-label="Next track"><svg viewBox="0 0 24 24"><path d="M18 5v14M6 6l9 6-9 6Z"/></svg></button>
+        <button class="control" id="playlist-button" type="button" aria-label="Playlist" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 6h12M4 11h12M4 16h8M17 14l4 3-4 3Z"/></svg></button>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
