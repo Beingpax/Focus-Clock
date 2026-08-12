@@ -99,10 +99,17 @@
         <div class="time"><span id="current-time">0:00</span><span id="duration">0:00</span></div>
       </div>
       <div class="controls">
-        <button class="control is-on" id="shuffle" type="button" aria-label="Shuffle" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M4 7h3c4 0 5 10 9 10h4M17 14l3 3-3 3M4 17h3c1.5 0 2.6-1.5 3.6-3M17 4l3 3-3 3M14 7h6"/></svg></button>
         <button class="control" id="previous" type="button" aria-label="Previous track"><svg viewBox="0 0 24 24"><path d="M6 5v14M18 6 9 12l9 6Z"/></svg></button>
         <button class="control play" id="play" type="button" aria-label="Play" disabled><svg class="icon-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></svg><svg class="icon-pause" viewBox="0 0 24 24"><path d="M7 5h4v14H7zM14 5h4v14h-4z"/></svg></button>
         <button class="control" id="next" type="button" aria-label="Next track"><svg viewBox="0 0 24 24"><path d="M18 5v14M6 6l9 6-9 6Z"/></svg></button>
+        <div class="playback-options-shell">
+          <button class="control" id="playback-options-button" type="button" aria-label="Playback options" aria-expanded="false" aria-controls="playback-options"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6"/></svg><span class="option-dot" aria-hidden="true"></span></button>
+          <div class="playback-options" id="playback-options" hidden>
+            <button type="button" id="shuffle" role="switch" aria-checked="true"><span><b>Shuffle</b><small>Mix the playlist order</small></span><i aria-hidden="true"></i></button>
+            <button type="button" id="repeat" role="switch" aria-checked="false"><span><b>Repeat track</b><small>Replay the current song</small></span><i aria-hidden="true"></i></button>
+            <label for="sleep-duration"><span><b>Sleep timer</b><small id="sleep-status">Off</small></span><select id="sleep-duration" aria-label="Sleep timer duration"><option value="0">Off</option><option value="15">15 min</option><option value="30">30 min</option><option value="45">45 min</option><option value="60">1 hour</option></select></label>
+          </div>
+        </div>
         <button class="control" id="playlist-button" type="button" aria-label="Playlist" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 6h12M4 11h12M4 16h8M17 14l4 3-4 3Z"/></svg></button>
       </div>
     </section>

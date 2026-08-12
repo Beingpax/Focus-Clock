@@ -10,10 +10,7 @@ const types = {
   '.js': 'text/javascript; charset=utf-8',
   '.jpg': 'image/jpeg',
   '.json': 'application/json; charset=utf-8',
-  '.glb': 'model/gltf-binary',
-  '.mp4': 'video/mp4',
-  '.svg': 'image/svg+xml',
-  '.webm': 'video/webm'
+  '.svg': 'image/svg+xml'
 };
 const metadataCache = new Map();
 
@@ -54,9 +51,8 @@ createServer(async (request, response) => {
     'X-Content-Type-Options': 'nosniff'
   };
 
-  if (extension === '.webm' || extension === '.mp4') headers['Cache-Control'] = 'public, max-age=86400';
   response.writeHead(200, headers);
   createReadStream(file).pipe(response);
 }).listen(port, '127.0.0.1', () => {
-  console.log(`Night Drive: http://localhost:${port}`);
+  console.log(`Focus Clock: http://localhost:${port}`);
 });

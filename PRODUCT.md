@@ -16,7 +16,7 @@ People who want a quiet, time-aware music experience running in a browser.
 
 ## Product Purpose
 
-Turn a supplied YouTube playlist into a calm sunset radio with a tactile three-mode flip clock.
+Turn a supplied YouTube playlist into a calm music clock with a tactile three-mode flip display.
 
 ## Positioning
 
@@ -34,16 +34,15 @@ Desktop or mobile browser, typically left open while listening. The first intera
 - Timer mode adds a matching duration wheel on the opposite side of the enlarged central display.
 - Avoids WebGL, video decoding, and continuous visual animation.
 - Does not host, extract, cache, or restream music.
+- Provides shuffle, repeat-current-track, and an off/15/30/45/60-minute sleep timer in playback options.
 
 ## Brand Commitments
 
 Quiet golden-hour atmosphere; restrained, usable controls; lightweight original visuals.
 
-## Evidence on Hand
+## Playlist
 
-- `/Users/beingpax/Downloads/0812 (1).mp4`
-- `/Users/beingpax/Downloads/a-bus-in-the-far-western.mp4`
-- YouTube playlist `PLCa2YVmIOBMW2aohnAOkz7avjhFdVBIOR`
+YouTube playlist `PLJODkeX4uSus`.
 
 ## Product Principles
 
