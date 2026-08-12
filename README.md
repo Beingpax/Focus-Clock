@@ -10,6 +10,8 @@ Then open [http://localhost:4173](http://localhost:4173).
 
 The local server is required because YouTube blocks embedded playback from `file://` pages that do not provide a valid origin and HTTP referrer.
 
+For the Cloudflare runtime, use `npm run dev` locally and `npm run deploy` to publish. Static files live in `public/`; `src/worker.js` handles `/api/metadata` and delegates other requests to Workers Static Assets.
+
 The visual background is a static photograph. The central timepiece is a dependency-free CSS 3D split-flap display with Clock, Stopwatch, and Timer modes. Its mode wheel supports pointer drag, touch, wheel/trackpad scrolling, clicking, and arrow keys. No video or WebGL scene is loaded.
 
 The selected full-screen background is Daniel Leone’s mountain photograph stored locally at `assets/backgrounds/daniel-leone-mountains-v1.jpg`.
@@ -18,4 +20,6 @@ The split-flap DOM layering, continuous panel rotation, and shadow lifecycle are
 
 Playback options include playlist shuffle, repeat-current-track, and a sleep timer with 15, 30, 45, and 60-minute durations.
 
-The `/api/metadata` endpoint proxies YouTube oEmbed titles. For Cloudflare, deploy the static files and that endpoint together with Workers Static Assets; the local Node server remains useful for development.
+The `/api/metadata` endpoint proxies YouTube oEmbed titles. Production deploys the static files and that endpoint together with Workers Static Assets; the local Node server remains useful as a dependency-free development fallback.
+
+Pushes to `main` deploy through `.github/workflows/deploy.yml`. The repository must define `CLOUDFLARE_ACCOUNT_ID` and a scoped `CLOUDFLARE_API_TOKEN` as GitHub Actions secrets.
